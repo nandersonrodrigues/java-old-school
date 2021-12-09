@@ -26,16 +26,23 @@ public class ProductRegistrationController extends jakarta.servlet.http.HttpServ
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String description = request.getParameter("description");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		double price = Double.parseDouble(request.getParameter("price"));
-		boolean available = false;
-		if (request.getParameter("available") != null && 
-			request.getParameter("available").equals("on")) available = true;
+		if (request.getParameter("description") != null && !request.getParameter("description").isEmpty() && 
+			request.getParameter("quantity") != null && !request.getParameter("quantity").isEmpty() &&
+			request.getParameter("price") != null && !request.getParameter("price").isEmpty()) {
+			
+			String description = request.getParameter("description");
+			Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+			Double price = Double.parseDouble(request.getParameter("price"));
+			boolean available = false;
+			
+			if (request.getParameter("available") != null && 
+				request.getParameter("available").equals("on")) available = true;
+			
+			System.out.println(description);
+			System.out.println(quantity);
+			System.out.println(price);
+			System.out.println(available);
+		}	
 		
-		System.out.println(description);
-		System.out.println(quantity);
-		System.out.println(price);
-		System.out.println(available);
 	}
 }
