@@ -38,7 +38,13 @@
 			<div>
 				<input id="button" type="submit" name="submit" value="Register Product">
 			</div>	
-		
+			<br>
+			<div>
+				<%
+				String message = (String) request.getAttribute("message");	
+				if (message != null) out.print(message);
+				%>
+			</div>
 		</form>
 	</main>
 	
