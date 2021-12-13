@@ -2,6 +2,8 @@ package com.oldschool.controller;
 
 import java.io.IOException;
 
+import com.oldschool.model.Product;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -28,11 +30,10 @@ public class ProductRegistrationController extends jakarta.servlet.http.HttpServ
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String description;
+		String description, message;
 		Integer quantity;
 		Double price;
 		boolean available;
-		String message;
 		
 		if (request.getParameter("description") != null && !request.getParameter("description").isEmpty() && 
 			request.getParameter("quantity") != null && !request.getParameter("quantity").isEmpty() &&
@@ -44,6 +45,10 @@ public class ProductRegistrationController extends jakarta.servlet.http.HttpServ
 			available = false;
 			if (request.getParameter("available") != null && 
 				request.getParameter("available").equals("on")) available = true;
+			
+			Product product = new Product(description, price, available, quantity);
+			
+			product.save();
 			
 			message = "Product has been successfully registered !";
 		}
