@@ -1,5 +1,7 @@
 package com.oldschool.model;
 
+import java.util.ArrayList;
+
 import com.oldschool.dao.ProductDao;
 
 public class Product {
@@ -65,9 +67,13 @@ public class Product {
 	
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
+	} 
 	
 	public void save() {
 		new ProductDao().registerProduct(this);
+	}
+	
+	public ArrayList<Product> findProductByDescription (String description) {
+		return new ProductDao().findProductsByDescription(description);
 	}
 }
