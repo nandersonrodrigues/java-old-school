@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.oldschool.model.Product;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,9 +30,10 @@ public class FindProductController extends HttpServlet {
 		String description = request.getParameter("description");
 		ArrayList<Product> products = new Product().findProductByDescription(description);
 		
-		for (Product product: products) {
-			System.out.println(product.getDescription());
-		}
+		request.setAttribute("products", products);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("productConsult.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
